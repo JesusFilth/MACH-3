@@ -81,7 +81,7 @@ public class Battlegraund : MonoBehaviour, IBallDestroy
 
     private void CreateBall(int x, int y)
     {
-        Ball newBall = _pool.GetFree();
+        Ball newBall = _pool.GetRandomDisable();
         newBall.Init(this);
         newBall.SetPosition(x, y);
         newBall.Enable();
@@ -98,7 +98,7 @@ public class Battlegraund : MonoBehaviour, IBallDestroy
         {
             for (int j = 0; j < SizeY; j++)
             {
-                Ball ball = _pool.GetFree();
+                Ball ball = _pool.GetRandomDisable();
                 ball.Init(this);
                 ball.SetPosition(i, j);
                 ball.Enable();

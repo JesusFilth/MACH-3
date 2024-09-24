@@ -26,7 +26,7 @@ public class BallPool : MonoBehaviour
             throw new ArgumentNullException(nameof(_ballPrefabs));
     }
 
-    public Ball GetFree()
+    public Ball GetRandomDisable()
     {
         if (_poolBalls == null || _poolBalls.Count == 0)
             throw new ArgumentNullException(nameof(_poolBalls));
@@ -39,6 +39,19 @@ public class BallPool : MonoBehaviour
         int randomIndex = Random.Range(0,freeBalls.Length);
 
         return freeBalls[randomIndex];
+    }
+
+    public Ball[] GetEnableAll()
+    {
+        if (_poolBalls == null || _poolBalls.Count == 0)
+            throw new ArgumentNullException(nameof(_poolBalls));
+
+        Ball[] freeBalls = _poolBalls.Where(ball => ball.IsEnabled()).ToArray();
+
+        if (freeBalls == null || freeBalls.Length == 0)
+            throw new ArgumentNullException(nameof(freeBalls));
+
+        return freeBalls;
     }
 
     private void Initialize()
