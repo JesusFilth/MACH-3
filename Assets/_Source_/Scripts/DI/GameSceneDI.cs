@@ -7,6 +7,7 @@ public class GameSceneDI : MonoBehaviour, IInstaller
     [SerializeField] private BallPool _ballPool;
     [SerializeField] private Stats _stats;
     [SerializeField] private GameSession _session;
+    [SerializeField] private StateMashineUI _stateMashineUI;
 
     public void InstallBindings(ContainerBuilder containerBuilder)
     {
@@ -14,5 +15,6 @@ public class GameSceneDI : MonoBehaviour, IInstaller
         containerBuilder.AddSingleton(_ballPool, typeof(IBallPool));
         containerBuilder.AddSingleton(_stats);
         containerBuilder.AddSingleton(_session);
+        containerBuilder.AddSingleton(_stateMashineUI);
     }
 }
