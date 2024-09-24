@@ -20,13 +20,6 @@ public class Stats : MonoBehaviour
         StepsChanged?.Invoke(_steps);
 
         if (_steps == 0)
-            ToGameOver();
-    }
-
-    private void ToGameOver()
-    {
-        GameEnded?.Invoke();
-
-        Debug.Log("GameOver");
+            GameEnded?.Invoke();
     }
 }
