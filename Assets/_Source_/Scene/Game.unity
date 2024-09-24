@@ -373,6 +373,12 @@ MonoBehaviour:
     _weight: 50
   - _ball: {fileID: 2260780197173752554, guid: 7aba48c2183fea64b9c4288cc94e700c, type: 3}
     _weight: 50
+  - _ball: {fileID: 149487404432894884, guid: dbbae8430dc4a15439659a9c32e61381, type: 3}
+    _weight: 50
+  - _ball: {fileID: 3003320736892461245, guid: 77332e3664e5b1546b0d6dba3b0c0e02, type: 3}
+    _weight: 50
+  - _ball: {fileID: 735745961610085524, guid: 40fe39e7c8fe0944fac5ecaba19f483b, type: 3}
+    _weight: 50
   _conteiner: {fileID: 165524358}
   _capasity: 100
 --- !u!1 &706493694

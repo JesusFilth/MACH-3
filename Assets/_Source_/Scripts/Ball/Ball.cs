@@ -8,9 +8,6 @@ public class Ball : MonoBehaviour
     [SerializeField] private ColorType _type;
     [SerializeField] private LayerMask _ballMask;
 
-    public int PosX { get; private set; }
-    public int PosY { get; private set; }
-
     private IBallDestroy _battlegraund;
     private Transform _transform;
     private GameObject _gameObject;
@@ -23,6 +20,8 @@ public class Ball : MonoBehaviour
     };
 
     public ColorType Type => _type;
+    public int PosX { get; private set; }
+    public int PosY { get; private set; }
 
     private void Awake()
     {

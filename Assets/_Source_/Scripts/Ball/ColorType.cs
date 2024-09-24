@@ -3,5 +3,8 @@
     Red,
     Green, 
     Blue,
-    White
+    White,
+    Yellow,
+    Black,
+    Purple
 }
