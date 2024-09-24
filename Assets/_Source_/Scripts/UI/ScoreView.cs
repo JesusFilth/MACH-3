@@ -1,11 +1,13 @@
 using System;
+using Reflex.Attributes;
 using TMPro;
 using UnityEngine;
 
 public class ScoreView : MonoBehaviour
 {
     [SerializeField] private TMP_Text _text;
-    [SerializeField] private Stats _stats;
+
+    [Inject] private Stats _stats;
 
     private void OnEnable()
     {
@@ -21,9 +23,6 @@ public class ScoreView : MonoBehaviour
     {
         if (_text == null)
             throw new ArgumentNullException(nameof(_text));
-
-        if (_stats == null)
-            throw new ArgumentNullException(nameof(_stats));
     }
 
     private void UpdateData(int score)

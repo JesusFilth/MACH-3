@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Reflex.Attributes;
 using UnityEngine;
 
 public class Battlegraund : MonoBehaviour, IBallDestroy
@@ -11,24 +12,14 @@ public class Battlegraund : MonoBehaviour, IBallDestroy
     private const int SizeX = 5;
     private const int SizeY = 5;
 
-    [SerializeField] private BallPool _pool;
-    [SerializeField] private Helper _helper;
-    [SerializeField] private Stats _stats;
     [SerializeField] private int CreatePositionY = 6;
+
+    [Inject] private Stats _stats;
+    [Inject] private IBallPool _pool;
 
     private void Start()
     {
         Initialize();
-        _helper.Show();
-    }
-
-    private void OnValidate()
-    {
-        if (_pool == null)
-            throw new ArgumentNullException(nameof(_pool));
-
-        if (_stats == null)
-            throw new ArgumentNullException(nameof(_stats));
     }
 
     public void Destroy(Ball ball)

@@ -1,8 +1,9 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
-public class Helper : MonoBehaviour
+public class Helper : MonoBehaviour, IGameHelper
 {
     [SerializeField] private GameObject _backlight;
     [SerializeField] private BallPool _pool;
@@ -34,22 +35,11 @@ public class Helper : MonoBehaviour
             throw new ArgumentNullException(nameof(balls));
 
         if (TryFindStep(balls, out Ball ball))
-        {
             _currentBall = ball;
-            On();
-        }
-    }
+        else
+            _currentBall = balls[Random.Range(0, balls.Length)];
 
-    private void On()
-    {
-        _backlight.transform.position = _currentBall.Transform.position;
-        _backlight.SetActive(true);
-    }
-
-    private void Off()
-    {
-        _backlight.SetActive(false);
-        _currentBall = null;
+        On();
     }
 
     public bool HasStep()
@@ -65,6 +55,18 @@ public class Helper : MonoBehaviour
         }
 
         return false;
+    }
+
+    private void On()
+    {
+        _backlight.transform.position = _currentBall.Transform.position;
+        _backlight.SetActive(true);
+    }
+
+    private void Off()
+    {
+        _backlight.SetActive(false);
+        _currentBall = null;
     }
 
     private bool TryFindStep(Ball[] balls, out Ball ball)

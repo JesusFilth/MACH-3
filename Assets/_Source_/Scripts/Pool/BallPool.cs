@@ -4,7 +4,7 @@ using System.Linq;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class BallPool : MonoBehaviour
+public class BallPool : MonoBehaviour, IBallPool
 {
     [SerializeField] private BallSpawnModel[] _ballPrefabs;
     [SerializeField] private Transform _conteiner;

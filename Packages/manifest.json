@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "com.gustavopsantos.reflex": "https://github.com/gustavopsantos/reflex.git?path=/Assets/Reflex/#9.0.0",
     "com.unity.adaptiveperformance": "5.1.0",
     "com.unity.collab-proxy": "2.5.1",
     "com.unity.feature.development": "1.0.1",
