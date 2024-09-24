@@ -3,30 +3,38 @@ using UnityEngine;
 
 public class Ball : MonoBehaviour
 {
-    const float DetectionRadius = 0.75f;
+    private const float DetectionRadius = 0.75f;
 
     [SerializeField] private ColorType _type;
     [SerializeField] private LayerMask _ballMask;
 
-    private Battlegraund _battlegraund;
+    private IBallDestroy _battlegraund;
     private Transform _transform;
+    private GameObject _gameObject;
 
-    private Vector3[] _directions = {Vector3.up, Vector3.down, Vector3.left, Vector3.right };
+    private Vector3[] _directions = {
+        Vector3.up,
+        Vector3.down,
+        Vector3.left,
+        Vector3.right
+    };
 
     public ColorType Type => _type;
-
-    public int PosX { get; private set; }
-    public int PosY { get; private set; }
 
     private void Awake()
     {
         _transform = transform;
+        _gameObject = gameObject;
     }
 
     private void OnMouseDown()
     {
-        _battlegraund.CheckNearBallsRaycast(this);
+        _battlegraund.Destroy(this);
     }
+
+    public bool IsEnabled() => _gameObject.activeSelf;
+
+    public void Enable() => _gameObject.SetActive(true);
 
     public void FillNearBalls(List<Ball> nearBalls)
     {
@@ -49,21 +57,19 @@ public class Ball : MonoBehaviour
         }
     }
 
-    public void Init(Battlegraund battlegraund)
+    public void Init(IBallDestroy battlegraund)
     {
         _battlegraund = battlegraund;
     }
 
-    public void SetPosition(int x, int z)
+    public void SetPosition(int x, int y)
     {
-        PosX = x;
-        PosY = z;
-
-        _transform.position = new Vector3(PosX, PosY, 0f);
+        _transform.position = new Vector3(x, y, _transform.position.z);
     }
 
     public void Destroy()
     {
-        Destroy(gameObject);
+        //Destroy(gameObject);
+        _gameObject.SetActive(false);
     }
 }

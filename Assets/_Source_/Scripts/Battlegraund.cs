@@ -1,24 +1,26 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
-using Random = UnityEngine.Random;
 
-public class Battlegraund : MonoBehaviour
+public class Battlegraund : MonoBehaviour, IBallDestroy
 {
     private const int SizeX = 5;
     private const int SizeY = 5;
 
-    [SerializeField] private Ball[] _ballPrefabs;
-    [SerializeField] private Transform _conteiner;
+    [SerializeField] private BallPool _pool;
 
-    private Ball[,] _balls = new Ball[SizeX, SizeY];//?
-
-    private void Awake()
+    private void Start()
     {
         Initialize();
     }
 
-    public void CheckNearBallsRaycast(Ball ball)
+    private void OnValidate()
+    {
+        if (_pool == null)
+            throw new ArgumentNullException(nameof(_pool));
+    }
+
+    public void Destroy(Ball ball)
     {
         List<Ball> nearBalls = new List<Ball>();
         nearBalls.Add(ball);
@@ -49,18 +51,11 @@ public class Battlegraund : MonoBehaviour
         {
             for (int j = 0; j < SizeY; j++)
             {
-                Ball ball = CreateRandomBall();
+                Ball ball = _pool.GetFree();
                 ball.Init(this);
                 ball.SetPosition(i, j);
-
-                _balls[i,j] = ball;
+                ball.Enable();
             }
         }
-    }
-
-    private Ball CreateRandomBall()
-    {
-        int randomIndex = Random.Range(0, _ballPrefabs.Length);
-        return Instantiate(_ballPrefabs[randomIndex], _conteiner);
     }
 }
