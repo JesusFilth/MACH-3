@@ -8,6 +8,7 @@ public class Battlegraund : MonoBehaviour, IBallDestroy
 {
     private const int MinBallForScore = 3;
     private const int PriceForMove = -1;
+    private const int ScoreForOneBall = 1;
 
     private const int SizeX = 5;
     private const int SizeY = 5;
@@ -16,6 +17,7 @@ public class Battlegraund : MonoBehaviour, IBallDestroy
 
     [Inject] private Stats _stats;
     [Inject] private IBallPool _pool;
+    [Inject] private IGameHelper _gameHelper;
 
     private void Start()
     {
@@ -24,6 +26,8 @@ public class Battlegraund : MonoBehaviour, IBallDestroy
 
     public void Destroy(Ball ball)
     {
+        _gameHelper.Off();
+
         List<Ball> nearBalls = new List<Ball>();
         nearBalls.Add(ball);
         ball.FillNearBalls(nearBalls);
@@ -34,6 +38,7 @@ public class Battlegraund : MonoBehaviour, IBallDestroy
         {
             CheckForAddScore(nearBalls.Count);
             CreateBalls(nearBalls);
+            _stats.AddScore(ScoreForOneBall * nearBalls.Count);
 
             foreach (Ball item in nearBalls)
                 item.Destroy();
@@ -42,6 +47,7 @@ public class Battlegraund : MonoBehaviour, IBallDestroy
         {
             ball.Destroy();
             CreateBall(ball.PosX, CreatePositionY);
+            _stats.AddScore(ScoreForOneBall);
         }
     }
 

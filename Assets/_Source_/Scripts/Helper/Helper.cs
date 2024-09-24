@@ -57,16 +57,16 @@ public class Helper : MonoBehaviour, IGameHelper
         return false;
     }
 
+    public void Off()
+    {
+        _backlight.SetActive(false);
+        _currentBall = null;
+    }
+
     private void On()
     {
         _backlight.transform.position = _currentBall.Transform.position;
         _backlight.SetActive(true);
-    }
-
-    private void Off()
-    {
-        _backlight.SetActive(false);
-        _currentBall = null;
     }
 
     private bool TryFindStep(Ball[] balls, out Ball ball)
