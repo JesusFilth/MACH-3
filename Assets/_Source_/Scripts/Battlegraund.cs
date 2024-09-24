@@ -12,12 +12,14 @@ public class Battlegraund : MonoBehaviour, IBallDestroy
     private const int SizeY = 5;
 
     [SerializeField] private BallPool _pool;
+    [SerializeField] private Helper _helper;
     [SerializeField] private Stats _stats;
     [SerializeField] private int CreatePositionY = 6;
 
     private void Start()
     {
         Initialize();
+        _helper.Show();
     }
 
     private void OnValidate()

@@ -19,6 +19,7 @@ public class Ball : MonoBehaviour
         Vector3.right
     };
 
+    public Transform Transform => _transform;
     public ColorType Type => _type;
     public int PosX { get; private set; }
     public int PosY { get; private set; }
