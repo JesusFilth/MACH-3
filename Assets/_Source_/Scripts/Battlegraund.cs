@@ -5,10 +5,14 @@ using UnityEngine;
 
 public class Battlegraund : MonoBehaviour, IBallDestroy
 {
+    private const int MinBallForScore = 3;
+    private const int PriceForMove = -1;
+
     private const int SizeX = 5;
     private const int SizeY = 5;
 
     [SerializeField] private BallPool _pool;
+    [SerializeField] private Stats _stats;
     [SerializeField] private int CreatePositionY = 6;
 
     private void Start()
@@ -20,6 +24,9 @@ public class Battlegraund : MonoBehaviour, IBallDestroy
     {
         if (_pool == null)
             throw new ArgumentNullException(nameof(_pool));
+
+        if (_stats == null)
+            throw new ArgumentNullException(nameof(_stats));
     }
 
     public void Destroy(Ball ball)
@@ -28,27 +35,15 @@ public class Battlegraund : MonoBehaviour, IBallDestroy
         nearBalls.Add(ball);
         ball.FillNearBalls(nearBalls);
 
-        ///---//? change this
+        _stats.AddStep(PriceForMove);
 
-        if (nearBalls.Count >= 3)
+        if (nearBalls.Count >= MinBallForScore)
         {
-            nearBalls.OrderBy(ball => ball.PosX);
-            Dictionary<int, int> newBalls = new Dictionary<int, int>();
+            CheckForAddScore(nearBalls.Count);
+            CreateBalls(nearBalls);
 
             foreach (Ball item in nearBalls)
-            {
-                if(newBalls.ContainsKey(item.PosX))
-                    newBalls[item.PosX]++;
-                else 
-                    newBalls[item.PosX] = 1;
-            }
-
-            CreateBalls(newBalls);
-
-            foreach (Ball item in nearBalls)
-            {
                 item.Destroy();
-            }
         }
         else
         {
@@ -57,8 +52,24 @@ public class Battlegraund : MonoBehaviour, IBallDestroy
         }
     }
 
-    private void CreateBalls(Dictionary<int, int> newBalls)
+    private void CheckForAddScore(int ballCount)
     {
+        _stats.AddStep(ballCount-1);
+    }
+
+    private void CreateBalls(List<Ball> nearBalls)
+    {
+        nearBalls.OrderBy(ball => ball.PosX);
+        Dictionary<int, int> newBalls = new Dictionary<int, int>();
+
+        foreach (Ball item in nearBalls)
+        {
+            if (newBalls.ContainsKey(item.PosX))
+                newBalls[item.PosX]++;
+            else
+                newBalls[item.PosX] = 1;
+        }
+
         foreach (var key in newBalls)
         {
             for (int i = 0; i < key.Value; i++)
