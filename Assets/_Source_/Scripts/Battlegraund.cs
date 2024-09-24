@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class Battlegraund : MonoBehaviour, IBallDestroy
@@ -8,6 +9,7 @@ public class Battlegraund : MonoBehaviour, IBallDestroy
     private const int SizeY = 5;
 
     [SerializeField] private BallPool _pool;
+    [SerializeField] private int CreatePositionY = 6;
 
     private void Start()
     {
@@ -26,9 +28,23 @@ public class Battlegraund : MonoBehaviour, IBallDestroy
         nearBalls.Add(ball);
         ball.FillNearBalls(nearBalls);
 
-        Debug.Log("Destroy");//? change this
+        ///---//? change this
+
         if (nearBalls.Count >= 3)
         {
+            nearBalls.OrderBy(ball => ball.PosX);
+            Dictionary<int, int> newBalls = new Dictionary<int, int>();
+
+            foreach (Ball item in nearBalls)
+            {
+                if(newBalls.ContainsKey(item.PosX))
+                    newBalls[item.PosX]++;
+                else 
+                    newBalls[item.PosX] = 1;
+            }
+
+            CreateBalls(newBalls);
+
             foreach (Ball item in nearBalls)
             {
                 item.Destroy();
@@ -37,7 +53,27 @@ public class Battlegraund : MonoBehaviour, IBallDestroy
         else
         {
             ball.Destroy();
+            CreateBall(ball.PosX, CreatePositionY);
         }
+    }
+
+    private void CreateBalls(Dictionary<int, int> newBalls)
+    {
+        foreach (var key in newBalls)
+        {
+            for (int i = 0; i < key.Value; i++)
+            {
+                CreateBall(key.Key, CreatePositionY + i);
+            }
+        }
+    }
+
+    private void CreateBall(int x, int y)
+    {
+        Ball newBall = _pool.GetFree();
+        newBall.Init(this);
+        newBall.SetPosition(x, y);
+        newBall.Enable();
     }
 
     private void Initialize()

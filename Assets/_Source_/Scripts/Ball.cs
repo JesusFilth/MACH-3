@@ -8,6 +8,9 @@ public class Ball : MonoBehaviour
     [SerializeField] private ColorType _type;
     [SerializeField] private LayerMask _ballMask;
 
+    public int PosX { get; private set; }
+    public int PosY { get; private set; }
+
     private IBallDestroy _battlegraund;
     private Transform _transform;
     private GameObject _gameObject;
@@ -34,7 +37,10 @@ public class Ball : MonoBehaviour
 
     public bool IsEnabled() => _gameObject.activeSelf;
 
-    public void Enable() => _gameObject.SetActive(true);
+    public void Enable()
+    {
+        _gameObject.SetActive(true);
+    }
 
     public void FillNearBalls(List<Ball> nearBalls)
     {
@@ -64,6 +70,9 @@ public class Ball : MonoBehaviour
 
     public void SetPosition(int x, int y)
     {
+        PosX = x;
+        PosY = y;
+
         _transform.position = new Vector3(x, y, _transform.position.z);
     }
 
