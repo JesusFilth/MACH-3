@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Reflex.Attributes;
 using UnityEngine;
@@ -8,7 +7,7 @@ public class Battlegraund : MonoBehaviour, IBallDestroy
 {
     private const int MinBallForScore = 3;
     private const int PriceForMove = -1;
-    private const int ScoreForOneBall = 1;
+    private const int ScoreForOneBall = 10;
 
     private const int SizeX = 5;
     private const int SizeY = 5;

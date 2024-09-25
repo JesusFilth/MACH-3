@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 904387129630274202}
   - component: {fileID: 2305420487517882969}
+  - component: {fileID: -2367342833382187096}
   m_Layer: 0
   m_Name: ProjectScope
   m_TagString: Untagged
@@ -44,3 +45,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 238ee66aa2bafad47bf60938e98aebca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-2367342833382187096
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8379835678308885431}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc75eff7a71662340b95e6941ea08834, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _defaultRecordSVG: {fileID: 4900000, guid: a5f73a04d3678554994f293a232dc3bc, type: 3}
