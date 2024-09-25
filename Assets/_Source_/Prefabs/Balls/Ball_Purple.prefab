@@ -14,8 +14,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 216775645731178318, guid: dbbae8430dc4a15439659a9c32e61381, type: 3}
       propertyPath: m_Name
-      value: Ball_Green Variant
+      value: Ball_Purple
       objectReference: {fileID: 0}
+    - target: {fileID: 4833813337029413868, guid: dbbae8430dc4a15439659a9c32e61381, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: cabb3fba75b0da54cb861ef57f18a204, type: 2}
     - target: {fileID: 5371844613578479667, guid: dbbae8430dc4a15439659a9c32e61381, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 

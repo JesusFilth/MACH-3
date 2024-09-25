@@ -14,7 +14,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4261451013248306483, guid: 852b8806d4369804787ebda0faf984ad, type: 3}
       propertyPath: m_Name
-      value: Ball_Green Variant
+      value: Ball_Blue
       objectReference: {fileID: 0}
     - target: {fileID: 6053492669357010018, guid: 852b8806d4369804787ebda0faf984ad, type: 3}
       propertyPath: m_LocalPosition.x
@@ -57,6 +57,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8263317403188286030, guid: 852b8806d4369804787ebda0faf984ad, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 6d27fd9d7bcc8fa4399173480cfd392f, type: 2}
+    - target: {fileID: 8877919561765650833, guid: 852b8806d4369804787ebda0faf984ad, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 6d27fd9d7bcc8fa4399173480cfd392f, type: 2}
