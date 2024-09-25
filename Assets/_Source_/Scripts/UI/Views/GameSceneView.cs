@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [RequireComponent(typeof(CanvasGroup))]
-public class GameSceneView : MonoBehaviour
+public class GameSceneView : MonoBehaviour, IGameView
 {
     private CanvasGroup _canvasGroup;
 
@@ -16,7 +16,7 @@ public class GameSceneView : MonoBehaviour
         _canvasGroup.interactable = false;
         _canvasGroup.blocksRaycasts = false;
 
-        Time.timeScale = 1;
+        Time.timeScale = 0;
     }
 
     public void Show()
@@ -25,6 +25,6 @@ public class GameSceneView : MonoBehaviour
         _canvasGroup.interactable = true;
         _canvasGroup.blocksRaycasts = true;
 
-        Time.timeScale = 0;
+        Time.timeScale = 1;
     }
 }

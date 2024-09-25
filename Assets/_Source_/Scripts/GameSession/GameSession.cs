@@ -8,6 +8,7 @@ public class GameSession : MonoBehaviour
 
     [Inject] private Stats _stats;
     [Inject] private IGameHelper _helper;
+    [Inject] private StateMashineUI _stateMashineUI;
 
     private void OnEnable()
     {
@@ -28,6 +29,6 @@ public class GameSession : MonoBehaviour
     private void GameOver()
     {
         if (_helper.HasStep() == false)
-            Debug.Log("Game Over");
+            _stateMashineUI.EnterIn<GameOverUIState>();
     }
 }

@@ -32,6 +32,9 @@ public class Ball : MonoBehaviour
 
     private void OnMouseDown()
     {
+        if (BlockBallUsable.GetInstance().IsLock)
+            return;
+
         _battlegraund.Destroy(this);
     }
 
@@ -40,6 +43,11 @@ public class Ball : MonoBehaviour
     public void Enable()
     {
         _gameObject.SetActive(true);
+    }
+
+    public void Destroy()
+    {
+        _gameObject.SetActive(false);
     }
 
     public void FillNearBalls(List<Ball> nearBalls)
@@ -74,11 +82,5 @@ public class Ball : MonoBehaviour
         PosY = y;
 
         _transform.position = new Vector3(x, y, _transform.position.z);
-    }
-
-    public void Destroy()
-    {
-        //Destroy(gameObject);
-        _gameObject.SetActive(false);
     }
 }

@@ -16,7 +16,7 @@ public class GameOverView : MonoBehaviour, IGameView
         _canvasGroup.interactable = false;
         _canvasGroup.blocksRaycasts = false;
 
-        Time.timeScale = 1;
+        BlockBallUsable.GetInstance().Unlock();
     }
 
     public void Show()
@@ -25,6 +25,6 @@ public class GameOverView : MonoBehaviour, IGameView
         _canvasGroup.interactable = true;
         _canvasGroup.blocksRaycasts = true;
 
-        Time.timeScale = 0;
+        BlockBallUsable.GetInstance().Lock();
     }
 }

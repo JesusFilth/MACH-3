@@ -13,7 +13,7 @@ public class StateMashineUI : MonoBehaviour
 
     private void Awake()
     {
-        //Initialize();
+        Initialize();
     }
 
     public void EnterIn<TState>()
