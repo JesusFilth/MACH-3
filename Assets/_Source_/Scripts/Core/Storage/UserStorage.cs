@@ -26,6 +26,14 @@ public class UserStorage : IRecordStorage
         return _user.GetRecordPrototype();
     }
 
+    public int GetHightRecord()
+    {
+        const int FirstElementIndex = 0;
+
+        Array.Sort(_user.Records);
+        return _user.Records[FirstElementIndex].Score;
+    }
+
     public void AddNewRecord(RecordModel record)
     {
         Array.Resize(ref _user.Records, _user.Records.Length + 1);

@@ -2,4 +2,5 @@
 {
     RecordModel[] GetRecords();
     void AddNewRecord(RecordModel record);
+    int GetHightRecord();
 }

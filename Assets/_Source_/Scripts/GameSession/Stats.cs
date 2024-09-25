@@ -5,7 +5,7 @@ public class Stats : MonoBehaviour
 {
     [SerializeField] private int _steps = 10;
 
-    private int _score = 0;
+    public int Score { get; private set; } = 0;
 
     public event Action GameEnded;
     public event Action<int> StepsChanged;
@@ -14,7 +14,7 @@ public class Stats : MonoBehaviour
     private void Start()
     {
         StepsChanged?.Invoke(_steps);
-        ScoreChanged?.Invoke(_score);
+        ScoreChanged?.Invoke(Score);
     }
 
     public void AddStep(int step)
@@ -29,8 +29,8 @@ public class Stats : MonoBehaviour
 
     public void AddScore(int score)
     {
-        _score = Mathf.Clamp(_score += score, 0, int.MaxValue);
+        Score = Mathf.Clamp(Score += score, 0, int.MaxValue);
 
-        ScoreChanged?.Invoke(_score);
+        ScoreChanged?.Invoke(Score);
     }
 }
