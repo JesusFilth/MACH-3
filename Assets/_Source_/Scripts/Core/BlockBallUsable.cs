@@ -1,19 +1,17 @@
-public class BlockBallUsable
+using UnityEngine;
+
+public class BlockBallUsable : MonoBehaviour
 {
-    private static BlockBallUsable _instance;
+    public static BlockBallUsable Instance { get; private set; }
 
     public bool IsLock { get; private set; }
 
-    private BlockBallUsable()
+    private void Awake()
     {
-    }
-
-    public static BlockBallUsable GetInstance()
-    {
-        if(_instance == null)
-            _instance = new BlockBallUsable();
-
-        return _instance;
+        if(Instance == null)
+        {
+            Instance = this;
+        }
     }
 
     public void Lock() => IsLock = true;

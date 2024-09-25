@@ -32,7 +32,7 @@ public class Ball : MonoBehaviour
 
     private void OnMouseDown()
     {
-        if (BlockBallUsable.GetInstance().IsLock)
+        if (BlockBallUsable.Instance.IsLock)
             return;
 
         _battlegraund.Destroy(this);

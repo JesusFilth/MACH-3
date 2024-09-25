@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [RequireComponent(typeof(CanvasGroup))]
-public class GameMenuView : MonoBehaviour, IGameView
+public class GameOverView : MonoBehaviour, IGameView
 {
     private CanvasGroup _canvasGroup;
 
@@ -16,7 +16,7 @@ public class GameMenuView : MonoBehaviour, IGameView
         _canvasGroup.interactable = false;
         _canvasGroup.blocksRaycasts = false;
 
-        BlockBallUsable.GetInstance().Unlock();
+        BlockBallUsable.Instance.Unlock();
     }
 
     public void Show()
@@ -25,6 +25,6 @@ public class GameMenuView : MonoBehaviour, IGameView
         _canvasGroup.interactable = true;
         _canvasGroup.blocksRaycasts = true;
 
-        BlockBallUsable.GetInstance().Lock();
+        BlockBallUsable.Instance.Lock();
     }
 }
