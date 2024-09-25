@@ -8,23 +8,10 @@ public class Helper : MonoBehaviour, IGameHelper
     [SerializeField] private GameObject _backlight;
     [SerializeField] private BallPool _pool;
 
-    private Ball _currentBall;
-
     private void Awake()
     {
         _backlight = Instantiate(_backlight, transform);
         Off();
-    }
-
-    private void Update()
-    {
-        if (_currentBall == null)
-            return;
-
-        if(_currentBall.IsEnabled() == false)
-        {
-            Off();
-        }
     }
 
     public void Show()
@@ -35,11 +22,9 @@ public class Helper : MonoBehaviour, IGameHelper
             throw new ArgumentNullException(nameof(balls));
 
         if (TryFindStep(balls, out Ball ball))
-            _currentBall = ball;
+            On(ball.Transform);
         else
-            _currentBall = balls[Random.Range(0, balls.Length)];
-
-        On();
+            On(balls[Random.Range(0, balls.Length)].Transform);
     }
 
     public bool HasStep()
@@ -60,12 +45,11 @@ public class Helper : MonoBehaviour, IGameHelper
     public void Off()
     {
         _backlight.SetActive(false);
-        _currentBall = null;
     }
 
-    private void On()
+    private void On(Transform position)
     {
-        _backlight.transform.position = _currentBall.Transform.position;
+        _backlight.transform.position = position.position;
         _backlight.SetActive(true);
     }
 

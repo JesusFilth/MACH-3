@@ -331,7 +331,7 @@ GameObject:
   - component: {fileID: 165524358}
   - component: {fileID: 165524359}
   m_Layer: 0
-  m_Name: Pool
+  m_Name: BallPool
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -380,7 +380,7 @@ MonoBehaviour:
   - _ball: {fileID: 735745961610085524, guid: 40fe39e7c8fe0944fac5ecaba19f483b, type: 3}
     _weight: 50
   _conteiner: {fileID: 165524358}
-  _capasity: 100
+  _capasity: 40
 --- !u!1 &374728045
 GameObject:
   m_ObjectHideFlags: 0
@@ -450,6 +450,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _helper: {fileID: 669891851}
   _ballPool: {fileID: 165524359}
+  _particlePool: {fileID: 2093498949}
   _stats: {fileID: 1049267644}
   _session: {fileID: 1216553828}
   _stateMashineUI: {fileID: 2046122834}
@@ -1469,6 +1470,7 @@ Transform:
   - {fileID: 669891850}
   - {fileID: 1216553829}
   - {fileID: 2046122835}
+  - {fileID: 2093498948}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1476919670
@@ -2522,6 +2524,53 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2065857193}
   m_CullTransparentMesh: 1
+--- !u!1 &2093498947
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2093498948}
+  - component: {fileID: 2093498949}
+  m_Layer: 0
+  m_Name: ParticlePool
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2093498948
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2093498947}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1422061990}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2093498949
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2093498947}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fcc2926085db4d549bc6f3a00e159bb3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _prefab: {fileID: 8852464876528650567, guid: 9c3489271c02c7b4e9b0100db8596abe, type: 3}
+  _capasity: 10
+  _maxSize: 10
 --- !u!1 &2120750932
 GameObject:
   m_ObjectHideFlags: 0

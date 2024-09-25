@@ -16,6 +16,7 @@ public class Battlegraund : MonoBehaviour, IBallDestroy
     [SerializeField] private int CreatePositionY = 6;
 
     [Inject] private Stats _stats;
+    [Inject] private Pool _particlePool;
     [Inject] private IBallPool _pool;
     [Inject] private IGameHelper _gameHelper;
 
@@ -40,15 +41,26 @@ public class Battlegraund : MonoBehaviour, IBallDestroy
             CreateBalls(nearBalls);
             _stats.AddScore(ScoreForOneBall * nearBalls.Count);
 
-            foreach (Ball item in nearBalls)
-                item.Destroy();
+            foreach (Ball ballElement in nearBalls)
+            {
+                _particlePool.Create(GetParticleBoomPosition(ballElement.Transform));
+                ballElement.Destroy();
+            }
         }
         else
         {
+            _particlePool.Create(GetParticleBoomPosition(ball.Transform));
             ball.Destroy();
             CreateBall(ball.PosX, CreatePositionY);
             _stats.AddScore(ScoreForOneBall);
         }
+    }
+
+    private Vector3 GetParticleBoomPosition(Transform transform)
+    {
+        const float offsetZ = -0.5f;
+
+        return new Vector3(transform.position.x, transform.position.y, transform.position.z + offsetZ);
     }
 
     private void CheckForAddScore(int ballCount)
