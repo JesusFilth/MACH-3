@@ -32,8 +32,6 @@ public class Battlegraund : MonoBehaviour, IBallDestroy
         nearBalls.Add(ball);
         ball.FillNearBalls(nearBalls);
 
-        _stats.AddStep(PriceForMove);
-
         if (nearBalls.Count >= MinBallForScore)
         {
             CheckForAddScore(nearBalls.Count);
@@ -48,11 +46,16 @@ public class Battlegraund : MonoBehaviour, IBallDestroy
         }
         else
         {
+            if (_stats.Steps == 0)
+                return;
+
             _particlePool.Create(GetParticleBoomPosition(ball.Transform));
             ball.Destroy();
             CreateBall(ball.PosX, CreatePositionY);
             _stats.AddScore(ScoreForOneBall);
         }
+
+        _stats.AddStep(PriceForMove);
     }
 
     private Vector3 GetParticleBoomPosition(Transform transform)

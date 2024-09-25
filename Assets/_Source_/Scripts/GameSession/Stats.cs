@@ -6,6 +6,7 @@ public class Stats : MonoBehaviour
     [SerializeField] private int _steps = 10;
 
     public int Score { get; private set; } = 0;
+    public int Steps => _steps;
 
     public event Action GameEnded;
     public event Action<int> StepsChanged;
